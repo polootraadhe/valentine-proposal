@@ -3,59 +3,87 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Will You Be My Valentine?</title>
+    <title>Valentine's Proposal</title>
     <style>
         body {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            font-family: Arial, sans-serif;
-            background-color: #ffcccb;
+            background-color: #f7e0e0;
             text-align: center;
+            font-family: 'Arial', sans-serif;
+            overflow: hidden;
         }
         h1 {
-            color: #ff1493;
-            font-size: 3em;
+            color: #ff69b4;
+            margin-top: 100px;
+            font-size: 50px;
         }
-        button {
-            font-size: 1.5em;
-            margin: 20px;
-            padding: 10px 20px;
-            background-color: #fff;
+        .heart {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            background-color: #ff1493;
+            transform: rotate(-45deg);
+            animation: float 2s infinite;
+        }
+        .heart:before,
+        .heart:after {
+            content: '';
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            background-color: #ff1493;
+            border-radius: 50%;
+        }
+        .heart:before {
+            top: -25px;
+            left: 0;
+        }
+        .heart:after {
+            left: 25px;
+            top: 0;
+        }
+        @keyframes float {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0); }
+        }
+        .yes-button {
+            padding: 15px 30px;
+            font-size: 20px;
             border: none;
             border-radius: 5px;
-            cursor: pointer;
-        }
-        button:hover {
             background-color: #ff69b4;
             color: white;
-        }
-        .celebration {
-            display: none;
-            font-size: 2em;
-            color: gold;
+            cursor: pointer;
+            margin: 20px;
         }
     </style>
 </head>
 <body>
-    <div>
-        <h1>Yasmine, will you be my Valentine?</h1>
-        <button id="yesButton1">Yes!</button>
-        <button id="yesButton2">Absolutely!</button>
-        <div class="celebration" id="celebrationMessage">🎉 Hooray! 🎉</div>
-    </div>
-    <script>
-        const yesButton1 = document.getElementById('yesButton1');
-        const yesButton2 = document.getElementById('yesButton2');
-        const celebrationMessage = document.getElementById('celebrationMessage');
 
-        yesButton1.addEventListener('click', () => {
-            celebrationMessage.style.display = 'block';
-        });
-        yesButton2.addEventListener('click', () => {
-            celebrationMessage.style.display = 'block';
-        });
+    <h1>Will You Be My Valentine?</h1>
+    
+    <div class="heart"></div>
+    <div class="heart" style="top: 50px; left: 150px;"></div>
+    <div class="heart" style="top: 150px; left: 300px;"></div>
+
+    <button class="yes-button" onclick="alert('Yay! Love you!')">Yes!</button>
+    <button class="yes-button" onclick="alert('Absolutely! Let’s celebrate love!')">Yes!</button>
+
+    <script>
+        // Confetti effect
+        const colors = ['#ff0', '#ff4081', '#40c4ff', '#ffd740', '#ff3d00'];
+        setInterval(() => {
+            const confetti = document.createElement('div');
+            confetti.style.position = 'absolute';
+            confetti.style.width = '10px';
+            confetti.style.height = '10px';
+            confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+            confetti.style.left = Math.random() * window.innerWidth + 'px';
+            confetti.style.top = '0';
+            document.body.appendChild(confetti);
+            setTimeout(() => confetti.remove(), 3000);
+        }, 200);
     </script>
+    
 </body>
 </html>
