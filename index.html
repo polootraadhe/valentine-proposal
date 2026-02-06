@@ -3,10 +3,181 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Valentine Proposal</title>
+    <title>Will You Be My Valentine?</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow-x: hidden;
+        }
+
+        .container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            padding: 40px;
+            max-width: 600px;
+            text-align: center;
+            animation: slideIn 0.8s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h1 {
+            color: #ff1493;
+            font-size: 2.5em;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .image-container {
+            margin: 30px 0;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 15px;
+            transition: transform 0.3s ease;
+        }
+
+        img:hover {
+            transform: scale(1.05);
+        }
+
+        .message {
+            font-size: 1.2em;
+            color: #333;
+            margin: 20px 0;
+            line-height: 1.6;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+
+        button {
+            padding: 15px 40px;
+            font-size: 1.1em;
+            border: none;
+            border-radius: 10px;
+            background: linear-gradient(135deg, #ff1493, #ff69b4);
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: bold;
+            box-shadow: 0 5px 15px rgba(255, 20, 147, 0.4);
+        }
+
+        button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(255, 20, 147, 0.6);
+        }
+
+        button:active {
+            transform: translateY(-1px);
+        }
+
+        .celebration {
+            display: none;
+            font-size: 3em;
+            margin-top: 20px;
+            animation: bounce 0.6s ease-in-out;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .heart {
+            position: fixed;
+            pointer-events: none;
+            font-size: 2em;
+            animation: float 3s ease-in forwards;
+        }
+
+        @keyframes float {
+            0% {
+                opacity: 1;
+                transform: translateY(0) translateX(0);
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(-500px) translateX(50px);
+            }
+        }
+    </style>
 </head>
 <body>
-    <h1>Valentine Proposal</h1>
-    <img src="IMG_0629.jpeg" alt="Proposal Image">
+    <div class="container">
+        <h1>💕 Will You Be My Valentine? 💕</h1>
+        
+        <div class="image-container">
+            <img src="IMG_0629.jpeg" alt="Our special moment" loading="lazy">
+        </div>
+
+        <p class="message">
+            Yasmine, you mean the world to me. Every moment with you is special.
+            <br><br>
+            Will you be my Valentine? 💗
+        </p>
+
+        <div class="buttons">
+            <button onclick="celebrate('Yes!')">Yes! 💕</button>
+            <button onclick="celebrate('Absolutely!')">Absolutely! 🎉</button>
+            <button onclick="celebrate('Forever!')">Forever! 💑</button>
+        </div>
+
+        <div class="celebration" id="celebration"></div>
+    </div>
+
+    <script>
+        function celebrate(text) {
+            const celebration = document.getElementById('celebration');
+            celebration.textContent = '🎉 ' + text + ' 🎉';
+            celebration.style.display = 'block';
+
+            // Create floating hearts
+            for (let i = 0; i < 20; i++) {
+                setTimeout(() => {
+                    const heart = document.createElement('div');
+                    heart.className = 'heart';
+                    heart.textContent = '❤️';
+                    heart.style.left = Math.random() * 100 + 'vw';
+                    heart.style.top = '100vh';
+                    document.body.appendChild(heart);
+                    setTimeout(() => heart.remove(), 3000);
+                }, i * 100);
+            }
+        }
+    </script>
 </body>
 </html>
